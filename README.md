@@ -1,4 +1,4 @@
-# Sequence Register Bundle
+# Number Sequence Generator Bundle
 
 Generates continous numbers for example for order numbers or customer numbers.
 

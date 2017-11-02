@@ -13,7 +13,7 @@
  *  @license    http://www.pimcore.org/license     GPLv3 and PEL
  */
 
-namespace Pimcore\NumberSequenceGeneratorBundle\DependencyInjection;
+namespace Pimcore\Bundle\NumberSequenceGeneratorBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

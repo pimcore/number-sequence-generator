@@ -3,7 +3,7 @@
 Generates continous numbers for example for order numbers or customer numbers.
 
 ```php
-$generator = \Pimcore::getContainer()->get(\Pimcore\NumberSequenceGeneratorBundle\Generator::class);
+$generator = \Pimcore::getContainer()->get(\Pimcore\Bundle\NumberSequenceGeneratorBundle\Generator::class);
 
 /*
 * Generates the next order number (increments current order number by 1)

@@ -13,7 +13,7 @@
  *  @license    http://www.pimcore.org/license     GPLv3 and PEL
  */
 
-namespace Pimcore\NumberSequenceGeneratorBundle;
+namespace Pimcore\Bundle\NumberSequenceGeneratorBundle;
 
 class NumberSequenceGeneratorBundle extends \Pimcore\Extension\Bundle\AbstractPimcoreBundle implements \Pimcore\Extension\Bundle\PimcoreBundleInterface
 {

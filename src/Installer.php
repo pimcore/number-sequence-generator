@@ -13,7 +13,7 @@
  *  @license    http://www.pimcore.org/license     GPLv3 and PEL
  */
 
-namespace Pimcore\NumberSequenceGeneratorBundle;
+namespace Pimcore\Bundle\NumberSequenceGeneratorBundle;
 
 use Doctrine\DBAL\Migrations\Version;
 use Doctrine\DBAL\Schema\Schema;

@@ -7,13 +7,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Pimcore\\NumberSequenceGeneratorBundle\\": "src/"
+            "Pimcore\\Bundle\\NumberSequenceGeneratorBundle\\": "src/"
         }
     },
     "extra": {
         "pimcore": {
             "bundles": [
-                "NumberSequenceGeneratorBundle\\NumberSequenceGeneratorBundle"
+                "Pimcore\\Bundle\\NumberSequenceGeneratorBundle\\NumberSequenceGeneratorBundle"
             ]
         }
     }

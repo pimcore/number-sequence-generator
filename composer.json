@@ -1,5 +1,5 @@
 {
-    "name": "pimcore/number-sequence-generator-bundle",
+    "name": "pimcore/number-sequence-generator",
     "license": "GPL-3.0+",
     "type": "pimcore-bundle",
     "config": {

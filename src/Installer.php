@@ -34,9 +34,10 @@ class Installer extends MigrationInstaller
 
     public function isInstalled()
     {
-        $result = \Pimcore\Db::get()->fetchAll('SHOW TABLES LIKE "bundle_number_sequence_generator_register"');
+        $result1 = \Pimcore\Db::get()->fetchAll('SHOW TABLES LIKE "bundle_number_sequence_generator_register"');
+        $result2 = \Pimcore\Db::get()->fetchAll('SHOW TABLES LIKE "' . RandomGenerator::TABLE_NAME . '"');
 
-        return !empty($result);
+        return !empty($result1) && !empty($result2);
     }
 
     public function canBeInstalled()

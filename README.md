@@ -1,5 +1,7 @@
 # Number Sequence Generator Bundle
 
+## Continues numbers
+
 Generates continous numbers for example for order numbers or customer numbers.
 
 ```php
@@ -21,3 +23,13 @@ $current = $generator->getCurrent('ordernumber');
 */
 $generator->setCurrent('ordernumber', 35017);
 ```
+
+## Random numbers (either numeric or alphanumeric)
+
+Generates unique random numbers.
+
+```php
+$generator = \Pimcore::getContainer()->get(\Pimcore\Bundle\NumberSequenceGeneratorBundle\RandomGenerator::class);
+$code = $generator->generateCode("vouchercode", \Pimcore\Bundle\NumberSequenceGeneratorBundle\RandomGenerator::ALPHANUMERIC, 32);
+```
+

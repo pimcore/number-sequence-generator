@@ -50,16 +50,21 @@ class RandomGenerator
      * @param $range
      * @param string $codeType
      * @param null $length
+     * @param string $characterSet character set for alphanumeric codes
      * @return bool|int|string
      */
-    public function generateCode($range, $codeType = self::NUMERIC, $length = null)
-    {
+    public function generateCode(
+        $range,
+        $codeType = self::NUMERIC,
+        $length = null,
+        $characterSet = "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ"
+    ) {
 
         switch ($codeType) {
             case self::NUMERIC:
                 return $this->generateNumericCode($range);
             case self::ALPHANUMERIC:
-                return $this->generateAlphanumericCode($range, $length);
+                return $this->generateAlphanumericCode($range, $length, $characterSet);
             default:
                 throw new \Exception("Code Type $codeType not supported.");
         }
@@ -93,7 +98,7 @@ class RandomGenerator
      * @param $length
      * @return bool|string
      */
-    private function generateAlphanumericCode($range, $length)
+    private function generateAlphanumericCode($range, $length, $characterSet)
     {
         if ($length && $length > 50) {
             throw new \Exception("maximum code length is 50");
@@ -103,7 +108,7 @@ class RandomGenerator
         $db = Db::get();
 
         while ($result) {
-            $code = substr(str_shuffle("123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ"), 0, $length);
+            $code = substr(str_shuffle($characterSet), 0, $length);
             $result = $db->fetchRow(
                 "SELECT * FROM ".self::TABLE_NAME." WHERE `range` = ? AND `code` = ?",
                 [$range, $code]

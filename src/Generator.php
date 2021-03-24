@@ -37,7 +37,7 @@ class Generator
         $db = Db::get();
         try {
             $db->beginTransaction();
-            $sql = sprintf('SELECT counter from %s WHERE register = ?', self::TABLE_NAME);
+            $sql = sprintf('SELECT counter from %s WHERE register = ? for update', self::TABLE_NAME);
             $currentNumber = $db->fetchOne($sql, [$register]);
             if ($currentNumber <= 0) {
                 $insertSql = sprintf('INSERT  INTO %s (register,counter) VALUES (?,?)', self::TABLE_NAME);

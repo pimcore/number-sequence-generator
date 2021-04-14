@@ -22,6 +22,3 @@ services:
     # from the kernel upon construction.
     Pimcore\Bundle\NumberSequenceGeneratorBundle\Installer:
         public: true
-        arguments:
-            # fetch the bundle via expression language
-            $bundle: "@=service('kernel').getBundle('NumberSequenceGeneratorBundle')"

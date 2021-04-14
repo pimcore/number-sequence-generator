@@ -43,14 +43,6 @@ class Installer extends AbstractInstaller
         return !$this->isInstalled();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function needsReloadAfterInstall()
-    {
-        return false;
-    }
-
     public function installDatabaseTable()
     {
         $sqlPath = __DIR__ . '/Resources/install/';

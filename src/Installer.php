@@ -15,20 +15,18 @@
 
 namespace Pimcore\Bundle\NumberSequenceGeneratorBundle;
 
-use Doctrine\DBAL\Migrations\Version;
-use Doctrine\DBAL\Schema\Schema;
-use Pimcore\Extension\Bundle\Installer\MigrationInstaller;
+use Pimcore\Extension\Bundle\Installer\AbstractInstaller;
 
-class Installer extends MigrationInstaller
+class Installer extends AbstractInstaller
 {
-    public function migrateInstall(Schema $schema, Version $version)
+    public function install()
     {
         $this->installDatabaseTable();
 
         return true;
     }
 
-    public function migrateUninstall(Schema $schema, Version $version)
+    public function uninstall()
     {
     }
 

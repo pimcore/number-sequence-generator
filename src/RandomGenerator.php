@@ -16,10 +16,15 @@
 namespace Pimcore\Bundle\NumberSequenceGeneratorBundle;
 
 use Pimcore\Db;
-use Pimcore\Model\Tool\Lock;
+use Symfony\Component\Lock\Factory as LockFactory;
 
 class RandomGenerator
 {
+
+    /**
+     * @var LockFactory
+     */
+    private $lockFactory;
 
     /**
      *  key for lock table
@@ -41,8 +46,9 @@ class RandomGenerator
      */
     const TABLE_NAME = "bundle_number_sequence_generator_randomregister";
 
-    public function __construct()
+    public function __construct(LockFactory $lockFactory)
     {
+        $this->lockFactory = $lockFactory;
     }
 
 
@@ -76,7 +82,8 @@ class RandomGenerator
      */
     private function generateNumericCode($range)
     {
-        Lock::acquire(self::LOCK_KEY);
+        $lock = $this->lockFactory->createLock(self::LOCK_KEY);
+        $lock->acquire(true);
         $db = Db::get();
         $code = $db->fetchOne("SELECT `code` FROM ".self::TABLE_NAME." WHERE `range` = ?", [$range]);
 
@@ -88,7 +95,7 @@ class RandomGenerator
             $code = 1;
             $db->insert(self::TABLE_NAME, ["code" => $code, "range" => $range]);
         }
-        Lock::release(self::LOCK_KEY);
+        $lock->release();
 
         return $code;
     }
@@ -103,7 +110,9 @@ class RandomGenerator
         if ($length && $length > 50) {
             throw new \Exception("maximum code length is 50");
         }
-        Lock::acquire(self::LOCK_KEY);
+
+        $lock = $this->lockFactory->createLock(self::LOCK_KEY);
+        $lock->acquire(true);
         $result = true;
         $db = Db::get();
 
@@ -117,7 +126,7 @@ class RandomGenerator
 
         $db->insert(self::TABLE_NAME, ["range" => $range, "code" => $code]);
 
-        Lock::release(self::LOCK_KEY);
+        $lock->release();
 
         return $code;
     }

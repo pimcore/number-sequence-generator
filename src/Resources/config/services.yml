@@ -9,7 +9,9 @@ services:
 
     Pimcore\Bundle\NumberSequenceGeneratorBundle\Generator: ~
 
-    Pimcore\Bundle\NumberSequenceGeneratorBundle\RandomGenerator: ~
+    Pimcore\Bundle\NumberSequenceGeneratorBundle\RandomGenerator:
+        arguments:
+            - '@Symfony\Component\Lock\LockFactory'
 
     bundle.number_sequence_generator.generator:
         alias: Pimcore\Bundle\NumberSequenceGeneratorBundle\Generator
@@ -22,6 +24,3 @@ services:
     # from the kernel upon construction.
     Pimcore\Bundle\NumberSequenceGeneratorBundle\Installer:
         public: true
-        arguments:
-            # fetch the bundle via expression language
-            $bundle: "@=service('kernel').getBundle('NumberSequenceGeneratorBundle')"

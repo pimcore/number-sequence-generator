@@ -16,7 +16,7 @@
 namespace Pimcore\Bundle\NumberSequenceGeneratorBundle;
 
 use Pimcore\Db;
-use Symfony\Component\Lock\Factory as LockFactory;
+use Symfony\Component\Lock\LockFactory;
 
 class RandomGenerator
 {

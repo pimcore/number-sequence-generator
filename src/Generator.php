@@ -83,7 +83,7 @@ class Generator
      * Get the current number of a register for informational output.
      * Must not be used for incrementational purposes.
      *
-     * @param $register the register name
+     * @param string $register the register name
      *
      * @return int >= 0
      */

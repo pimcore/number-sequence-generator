@@ -15,9 +15,11 @@
 
 namespace Pimcore\Bundle\NumberSequenceGeneratorBundle;
 
+use Pimcore\Extension\Bundle\Installer\InstallerInterface;
+
 class NumberSequenceGeneratorBundle extends \Pimcore\Extension\Bundle\AbstractPimcoreBundle implements \Pimcore\Extension\Bundle\PimcoreBundleInterface
 {
-    public function getInstaller()
+    public function getInstaller(): ?InstallerInterface
     {
         return $this->container->get(Installer::class);
     }

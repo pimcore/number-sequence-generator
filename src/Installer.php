@@ -30,7 +30,7 @@ class Installer extends AbstractInstaller
     {
     }
 
-    public function isInstalled()
+    public function isInstalled(): bool
     {
         $result1 = \Pimcore\Db::get()->fetchAll('SHOW TABLES LIKE "bundle_number_sequence_generator_register"');
         $result2 = \Pimcore\Db::get()->fetchAll('SHOW TABLES LIKE "' . RandomGenerator::TABLE_NAME . '"');
@@ -38,7 +38,7 @@ class Installer extends AbstractInstaller
         return !empty($result1) && !empty($result2);
     }
 
-    public function canBeInstalled()
+    public function canBeInstalled(): bool
     {
         return !$this->isInstalled();
     }

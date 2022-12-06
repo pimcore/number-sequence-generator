@@ -19,7 +19,7 @@ use Pimcore\Db;
 
 class Generator
 {
-    const TABLE_NAME = 'bundle_number_sequence_generator_register';
+    protected const TABLE_NAME = 'bundle_number_sequence_generator_register';
 
     /**
      * Get the next number of a sequence, or the start value, if the first entry.
@@ -68,7 +68,7 @@ class Generator
      * @param $register
      * @param $value
      *
-     * @return int|
+     * @return int
      */
     public function setCurrent($register, $value)
     {

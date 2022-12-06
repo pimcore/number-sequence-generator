@@ -50,7 +50,7 @@ class Installer extends AbstractInstaller
 
         foreach ($sqlFileNames as $fileName) {
             $statement = file_get_contents($sqlPath.$fileName);
-            \Pimcore\Db::get()->query($statement);
+            \Pimcore\Db::get()->executeQuery($statement);
         }
     }
 }

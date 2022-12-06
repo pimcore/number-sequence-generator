@@ -87,7 +87,7 @@ class RandomGenerator
 
         if ($code) {
             $code++;
-            $db->update(self::TABLE_NAME, ['code' => $code], '`range` = '.$db->quote($range));
+            $db->update(self::TABLE_NAME, ['code' => $code], ['`range` = '.$db->quote($range)]);
         } else {
             $code = 1;
             $db->insert(self::TABLE_NAME, ['code' => $code, 'range' => $range]);
@@ -101,7 +101,7 @@ class RandomGenerator
      * @param $range
      * @param $length
      *
-     * @return bool|string
+     * @return string
      */
     private function generateAlphanumericCode($range, $length, $characterSet)
     {
@@ -135,6 +135,6 @@ class RandomGenerator
     public function resetCodeGenerator($range)
     {
         $db = Db::get();
-        $db->query('DELETE FROM '.self::TABLE_NAME.' WHERE `range` = ?', [$range]);
+        $db->executeQuery('DELETE FROM '.self::TABLE_NAME.' WHERE `range` = ?', [$range]);
     }
 }

@@ -87,23 +87,10 @@ class RandomGenerator
 
         if ($code) {
             $code++;
-            $updateData = ['code' => $code];
-            $criteriaData = ['range' => $range];
-
-            // keep compatible with pimcore 10.5 // TODO: Remove if pimcore 10 support is dropped
-            if (!class_exists('\Pimcore\Db\Connection')) {
-                $updateData = Db\Helper::quoteDataIdentifiers($db, $updateData);
-                $criteriaData = Db\Helper::quoteDataIdentifiers($db, $criteriaData);
-            }
-            $db->update(self::TABLE_NAME, $updateData, $criteriaData);
+            $db->update(self::TABLE_NAME, Db\Helper::quoteDataIdentifiers($db,['code' => $code]), Db\Helper::quoteDataIdentifiers($db,['range' => $range]));
         } else {
-            // keep compatible with pimcore 10.5 // TODO: Remove if pimcore 10 support is dropped
-            $insertData = ['code' => $code, 'range' => $range];
-            if (!class_exists('\Pimcore\Db\Connection')) {
-                $insertData = Db\Helper::quoteDataIdentifiers($db, $insertData);
-            }
             $code = 1;
-            $db->insert(self::TABLE_NAME, $insertData);
+            $db->insert(self::TABLE_NAME, Db\Helper::quoteDataIdentifiers($db, ['code' => $code, 'range' => $range]));
         }
         $lock->release();
 
@@ -135,12 +122,7 @@ class RandomGenerator
             );
         }
 
-        // keep compatible with pimcore 10.5 // TODO: Remove if pimcore 10 support is dropped
-        $insertData = ['code' => $code, 'range' => $range];
-        if (!class_exists('\Pimcore\Db\Connection')) {
-            $insertData = Db\Helper::quoteDataIdentifiers($db, $insertData);
-        }
-        $db->insert(self::TABLE_NAME, $insertData);
+        $db->insert(self::TABLE_NAME, Db\Helper::quoteDataIdentifiers($db, ['range' => $range, 'code' => $code]));
 
         $lock->release();
 

@@ -62,8 +62,7 @@ class RandomGenerator
         $codeType = self::NUMERIC,
         $length = null,
         $characterSet = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'
-    ): int|string
-    {
+    ): int | string {
         switch ($codeType) {
             case self::NUMERIC:
                 return $this->generateNumericCode($range);

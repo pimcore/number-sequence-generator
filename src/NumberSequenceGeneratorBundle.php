@@ -30,7 +30,6 @@ class NumberSequenceGeneratorBundle extends AbstractPimcoreBundle
         return 'pimcore/number-sequence-generator';
     }
 
-
     /**
      * @return Installer
      */

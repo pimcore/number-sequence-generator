@@ -55,14 +55,14 @@ class RandomGenerator
      * @param null $length
      * @param string $characterSet character set for alphanumeric codes
      *
-     * @return int|string
+     * @return bool|int|string
      */
     public function generateCode(
         $range,
         $codeType = self::NUMERIC,
         $length = null,
         $characterSet = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'
-    ): int | string {
+    ) {
         switch ($codeType) {
             case self::NUMERIC:
                 return $this->generateNumericCode($range);
@@ -78,7 +78,7 @@ class RandomGenerator
      *
      * @return int
      */
-    private function generateNumericCode($range): int
+    private function generateNumericCode($range)
     {
         $lock = $this->lockFactory->createLock(self::LOCK_KEY);
         $lock->acquire(true);
@@ -87,10 +87,10 @@ class RandomGenerator
 
         if ($code) {
             $code++;
-            $db->update(self::TABLE_NAME, ['code' => $code], ['`range` = '.$db->quote($range)]);
+            $db->update(self::TABLE_NAME, Db\Helper::quoteDataIdentifiers($db,['code' => $code]), Db\Helper::quoteDataIdentifiers($db,['range' => $range]));
         } else {
             $code = 1;
-            $db->insert(self::TABLE_NAME, ['code' => $code, 'range' => $range]);
+            $db->insert(self::TABLE_NAME, Db\Helper::quoteDataIdentifiers($db, ['code' => $code, 'range' => $range]));
         }
         $lock->release();
 
@@ -103,7 +103,7 @@ class RandomGenerator
      *
      * @return string
      */
-    private function generateAlphanumericCode($range, $length, $characterSet): string
+    private function generateAlphanumericCode($range, $length, $characterSet)
     {
         if ($length && $length > 50) {
             throw new \Exception('maximum code length is 50');
@@ -116,13 +116,13 @@ class RandomGenerator
 
         while ($result) {
             $code = substr(str_shuffle($characterSet), 0, $length);
-            $result = $db->fetchRow(
+            $result = $db->fetchOne(
                 'SELECT * FROM '.self::TABLE_NAME.' WHERE `range` = ? AND `code` = ?',
                 [$range, $code]
             );
         }
 
-        $db->insert(self::TABLE_NAME, ['range' => $range, 'code' => $code]);
+        $db->insert(self::TABLE_NAME, Db\Helper::quoteDataIdentifiers($db, ['range' => $range, 'code' => $code]));
 
         $lock->release();
 
@@ -132,7 +132,7 @@ class RandomGenerator
     /**
      * @param $range
      */
-    public function resetCodeGenerator($range): void
+    public function resetCodeGenerator($range)
     {
         $db = Db::get();
         $db->executeQuery('DELETE FROM '.self::TABLE_NAME.' WHERE `range` = ?', [$range]);

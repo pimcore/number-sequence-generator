@@ -30,7 +30,7 @@ class Generator
      *
      * @return int > 0 or -1 on fatal error
      */
-    public function getNext(string $register, $startValue = 1000, $_trial = 0)
+    public function getNext(string $register, int $startValue = 1000, int $_trial = 0): int
     {
         //transactional save see https://dev.mysql.com/doc/refman/5.7/en/innodb-locking-reads.html
         //the select last_insert_id() does not access any table. merely retrieves identifier information
@@ -70,7 +70,7 @@ class Generator
      *
      * @return int
      */
-    public function setCurrent($register, $value)
+    public function setCurrent(string $register, $value): int
     {
         $db = Db::get();
         $sql = sprintf('REPLACE  INTO %s (register,counter) VALUES (?,?)', self::TABLE_NAME);
@@ -87,7 +87,7 @@ class Generator
      *
      * @return int >= 0
      */
-    public function getCurrent($register)
+    public function getCurrent(string $register): int
     {
         $db = Db::get();
         $sql = sprintf('SELECT counter FROM %s WHERE register=?', self::TABLE_NAME);

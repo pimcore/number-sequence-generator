@@ -15,9 +15,26 @@
 
 namespace Pimcore\Bundle\NumberSequenceGeneratorBundle;
 
-class NumberSequenceGeneratorBundle extends \Pimcore\Extension\Bundle\AbstractPimcoreBundle implements \Pimcore\Extension\Bundle\PimcoreBundleInterface
+use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
+use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
+
+class NumberSequenceGeneratorBundle extends AbstractPimcoreBundle
 {
-    public function getInstaller()
+    use PackageVersionTrait;
+
+    /**
+     * @inheritDoc
+     */
+    protected function getComposerPackageName(): string
+    {
+        return 'pimcore/number-sequence-generator';
+    }
+
+
+    /**
+     * @return Installer
+     */
+    public function getInstaller(): Installer
     {
         return $this->container->get(Installer::class);
     }

@@ -15,42 +15,30 @@
 
 namespace Pimcore\Bundle\NumberSequenceGeneratorBundle;
 
-use Pimcore\Extension\Bundle\Installer\AbstractInstaller;
+use Pimcore\Extension\Bundle\Installer\SettingsStoreAwareInstaller;
 
-class Installer extends AbstractInstaller
+class Installer extends SettingsStoreAwareInstaller
 {
     public function install()
     {
         $this->installDatabaseTable();
-
-        return true;
+        parent::install();
     }
 
     public function uninstall()
     {
-    }
-
-    public function isInstalled()
-    {
-        $result1 = \Pimcore\Db::get()->fetchAll('SHOW TABLES LIKE "bundle_number_sequence_generator_register"');
-        $result2 = \Pimcore\Db::get()->fetchAll('SHOW TABLES LIKE "' . RandomGenerator::TABLE_NAME . '"');
-
-        return !empty($result1) && !empty($result2);
-    }
-
-    public function canBeInstalled()
-    {
-        return !$this->isInstalled();
+        parent::uninstall();
     }
 
     public function installDatabaseTable()
     {
         $sqlPath = __DIR__ . '/Resources/install/';
         $sqlFileNames = ['install.sql'];
+        $db = \Pimcore\Db::get();
 
         foreach ($sqlFileNames as $fileName) {
             $statement = file_get_contents($sqlPath.$fileName);
-            \Pimcore\Db::get()->executeQuery($statement);
+            $db->executeQuery($statement);
         }
     }
 }

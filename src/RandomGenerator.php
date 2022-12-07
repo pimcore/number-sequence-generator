@@ -87,7 +87,7 @@ class RandomGenerator
 
         if ($code) {
             $code++;
-            $db->update(self::TABLE_NAME, Db\Helper::quoteDataIdentifiers($db,['code' => $code]), Db\Helper::quoteDataIdentifiers($db,['range' => $range]));
+            $db->update(self::TABLE_NAME, Db\Helper::quoteDataIdentifiers($db, ['code' => $code]), Db\Helper::quoteDataIdentifiers($db, ['range' => $range]));
         } else {
             $code = 1;
             $db->insert(self::TABLE_NAME, Db\Helper::quoteDataIdentifiers($db, ['code' => $code, 'range' => $range]));

@@ -1,0 +1,10 @@
+includes:
+    - phpstan.neon
+
+parameters:
+	reportUnmatchedIgnoredErrors: false
+	ignoreErrors:
+		-
+			message: "#Call to an undefined static method Pimcore\\\\Db\\\\Helper\\:\\:quoteDataIdentifiers\\(\\)\\.#"
+			count: 4
+			path: src/RandomGenerator.php

@@ -97,12 +97,13 @@ class RandomGenerator
             }
             $db->update(self::TABLE_NAME, $updateData, $criteriaData);
         } else {
+            $code = 1;
             // keep compatible with pimcore 10.5 // TODO: Remove if pimcore 10 support is dropped
             $insertData = ['code' => $code, 'range' => $range];
             if (!class_exists('\Pimcore\Db\Connection')) {
                 $insertData = Db\Helper::quoteDataIdentifiers($db, $insertData);
             }
-            $code = 1;
+
             $db->insert(self::TABLE_NAME, $insertData);
         }
         $lock->release();

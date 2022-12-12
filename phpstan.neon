@@ -4,5 +4,8 @@ parameters:
         - src
     bootstrapFiles:
         - phpstan-bootstrap.php
+    excludePaths:
+            - src/Migrations/*
+
 includes:
     - phpstan-baseline.neon

@@ -39,3 +39,6 @@ public function generateCode()
 }
 ```
 
+## Upgrade to Pimcore X
+- Update to latest (allowed) bundle version in Pimcore 6.9 and execute all migrations.
+- Then update to Pimcore X.

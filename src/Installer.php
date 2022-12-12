@@ -15,6 +15,7 @@
 
 namespace Pimcore\Bundle\NumberSequenceGeneratorBundle;
 
+use Pimcore\Bundle\NumberSequenceGeneratorBundle\Migrations\Version20221209110849;
 use Pimcore\Extension\Bundle\Installer\SettingsStoreAwareInstaller;
 
 class Installer extends SettingsStoreAwareInstaller
@@ -27,6 +28,7 @@ class Installer extends SettingsStoreAwareInstaller
 
     public function uninstall()
     {
+        //nothing to do due to potential data loss
         parent::uninstall();
     }
 
@@ -40,5 +42,10 @@ class Installer extends SettingsStoreAwareInstaller
             $statement = file_get_contents($sqlPath.$fileName);
             $db->executeQuery($statement);
         }
+    }
+
+    public function getLastMigrationVersionClassName(): ?string
+    {
+        return Version20221209110849::class;
     }
 }

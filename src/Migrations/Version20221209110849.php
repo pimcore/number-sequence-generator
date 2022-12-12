@@ -16,20 +16,15 @@
 namespace Pimcore\Bundle\NumberSequenceGeneratorBundle\Migrations;
 
 use Doctrine\DBAL\Schema\Schema;
+use Doctrine\Migrations\AbstractMigration;
 use Pimcore\Bundle\NumberSequenceGeneratorBundle\RandomGenerator;
-use Pimcore\Migrations\Migration\AbstractPimcoreMigration;
 use Pimcore\Model\Tool\SettingsStore;
 
 /**
  * Checking if tables already exist
  */
-class Version20221209110849 extends AbstractPimcoreMigration
+class Version20221209110849 extends AbstractMigration
 {
-    public function doesSqlMigrations(): bool
-    {
-        return false;
-    }
-
     public function up(Schema $schema): void
     {
         $result1 = \Pimcore\Db::get()->fetchAll('SHOW TABLES LIKE "bundle_number_sequence_generator_register"');

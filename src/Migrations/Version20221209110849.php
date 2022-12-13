@@ -32,7 +32,9 @@ class Version20221209110849 extends AbstractMigration
 
         $installed = !empty($result1) && !empty($result2);
 
-        SettingsStore::set('BUNDLE_INSTALLED__Pimcore\\NumberSequenceGeneratorBundle\\NumberSequenceGeneratorBundle', $installed, 'bool', 'pimcore');
+if ($installed) {
+    SettingsStore::set('BUNDLE_INSTALLED__Pimcore\\NumberSequenceGeneratorBundle\\NumberSequenceGeneratorBundle', $installed, 'bool', 'pimcore');
+}
     }
 
     public function down(Schema $schema): void

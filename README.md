@@ -39,3 +39,6 @@ public function generateCode()
 }
 ```
 
+## Upgrade to Pimcore XI
+- Update to latest (allowed) bundle version in Pimcore X and execute all migrations.
+- Then update to Pimcore XI.

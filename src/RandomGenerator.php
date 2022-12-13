@@ -87,10 +87,24 @@ class RandomGenerator
 
         if ($code) {
             $code++;
-            $db->update(self::TABLE_NAME, ['code' => $code], ['`range` = '.$db->quote($range)]);
+            $updateData = ['code' => $code];
+            $criteriaData = ['range' => $range];
+
+            // keep compatible with pimcore 10.5 // TODO: Remove if pimcore 10 support is dropped
+            if (!class_exists('\Pimcore\Db\Connection')) {
+                $updateData = Db\Helper::quoteDataIdentifiers($db, $updateData);
+                $criteriaData = Db\Helper::quoteDataIdentifiers($db, $criteriaData);
+            }
+            $db->update(self::TABLE_NAME, $updateData, $criteriaData);
         } else {
             $code = 1;
-            $db->insert(self::TABLE_NAME, ['code' => $code, 'range' => $range]);
+            // keep compatible with pimcore 10.5 // TODO: Remove if pimcore 10 support is dropped
+            $insertData = ['code' => $code, 'range' => $range];
+            if (!class_exists('\Pimcore\Db\Connection')) {
+                $insertData = Db\Helper::quoteDataIdentifiers($db, $insertData);
+            }
+
+            $db->insert(self::TABLE_NAME, $insertData);
         }
         $lock->release();
 
@@ -116,13 +130,18 @@ class RandomGenerator
 
         while ($result) {
             $code = substr(str_shuffle($characterSet), 0, $length);
-            $result = $db->fetchRow(
+            $result = $db->fetchOne(
                 'SELECT * FROM '.self::TABLE_NAME.' WHERE `range` = ? AND `code` = ?',
                 [$range, $code]
             );
         }
 
-        $db->insert(self::TABLE_NAME, ['range' => $range, 'code' => $code]);
+        // keep compatible with pimcore 10.5 // TODO: Remove if pimcore 10 support is dropped
+        $insertData = ['code' => $code, 'range' => $range];
+        if (!class_exists('\Pimcore\Db\Connection')) {
+            $insertData = Db\Helper::quoteDataIdentifiers($db, $insertData);
+        }
+        $db->insert(self::TABLE_NAME, $insertData);
 
         $lock->release();
 

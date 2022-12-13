@@ -6,8 +6,10 @@
     "config": {
         "sort-packages": true
     },
+    "prefer-stable": true,
+    "minimum-stability": "dev",
     "require": {
-      "pimcore/pimcore": "^10.5"
+      "pimcore/pimcore": "^10.6 || ^11.0"
     },
     "require-dev": {
       "phpstan/phpstan": "^1.9"

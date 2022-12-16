@@ -27,8 +27,8 @@ class Version20221209110849 extends AbstractMigration
 {
     public function up(Schema $schema): void
     {
-        $result1 = \Pimcore\Db::get()->fetchAll('SHOW TABLES LIKE "bundle_number_sequence_generator_register"');
-        $result2 = \Pimcore\Db::get()->fetchAll('SHOW TABLES LIKE "' . RandomGenerator::TABLE_NAME . '"');
+        $result1 = \Pimcore\Db::get()->fetchOne('SHOW TABLES LIKE "bundle_number_sequence_generator_register"');
+        $result2 = \Pimcore\Db::get()->fetchOne('SHOW TABLES LIKE "' . RandomGenerator::TABLE_NAME . '"');
 
         $installed = !empty($result1) && !empty($result2);
 

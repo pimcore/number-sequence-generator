@@ -20,13 +20,13 @@ use Pimcore\Extension\Bundle\Installer\SettingsStoreAwareInstaller;
 
 class Installer extends SettingsStoreAwareInstaller
 {
-    public function install()
+    public function install(): void
     {
         $this->installDatabaseTable();
         parent::install();
     }
 
-    public function uninstall()
+    public function uninstall(): void
     {
         //nothing to do due to potential data loss
         parent::uninstall();

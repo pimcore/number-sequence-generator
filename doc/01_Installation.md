@@ -1,4 +1,4 @@
-# Installation of the Studio Backend Bundle
+# Installation of the Number Sequence Generator Bundle
 
 ## Bundle Installation
 

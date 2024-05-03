@@ -5,12 +5,12 @@
  *
  * This source file is available under two different licenses:
  * - GNU General Public License version 3 (GPLv3)
- * - Pimcore Enterprise License (PEL)
+ * - Pimcore Commercial License (PCL)
  * Full copyright and license information is available in
  * LICENSE.md which is distributed with this source code.
  *
  *  @copyright  Copyright (c) Pimcore GmbH (http://www.pimcore.org)
- *  @license    http://www.pimcore.org/license     GPLv3 and PEL
+ *  @license    http://www.pimcore.org/license     GPLv3 and PCL
  */
 
 namespace Pimcore\Bundle\NumberSequenceGeneratorBundle;
@@ -29,6 +29,7 @@ class RandomGenerator
      *  key for lock table
      */
     const LOCK_KEY = 'number_sequence_generator';
+
     /**
      * numeric code
      */
@@ -50,7 +51,6 @@ class RandomGenerator
     }
 
     /**
-     * @param $range
      * @param string $codeType
      * @param null $length
      * @param string $characterSet character set for alphanumeric codes
@@ -74,7 +74,6 @@ class RandomGenerator
     }
 
     /**
-     * @param $range
      *
      * @return int
      */
@@ -112,8 +111,6 @@ class RandomGenerator
     }
 
     /**
-     * @param $range
-     * @param $length
      *
      * @return string
      */
@@ -148,9 +145,6 @@ class RandomGenerator
         return $code;
     }
 
-    /**
-     * @param $range
-     */
     public function resetCodeGenerator($range)
     {
         $db = Db::get();

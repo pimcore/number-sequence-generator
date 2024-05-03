@@ -5,12 +5,12 @@
  *
  * This source file is available under two different licenses:
  * - GNU General Public License version 3 (GPLv3)
- * - Pimcore Enterprise License (PEL)
+ * - Pimcore Commercial License (PCL)
  * Full copyright and license information is available in
  * LICENSE.md which is distributed with this source code.
  *
  *  @copyright  Copyright (c) Pimcore GmbH (http://www.pimcore.org)
- *  @license    http://www.pimcore.org/license     GPLv3 and PEL
+ *  @license    http://www.pimcore.org/license     GPLv3 and PCL
  */
 
 namespace Pimcore\Bundle\NumberSequenceGeneratorBundle;
@@ -35,6 +35,7 @@ class Generator
         //transactional save see https://dev.mysql.com/doc/refman/5.7/en/innodb-locking-reads.html
         //the select last_insert_id() does not access any table. merely retrieves identifier information
         $db = Db::get();
+
         try {
             $db->beginTransaction();
             $sql = sprintf('SELECT counter from %s WHERE register = ? for update', self::TABLE_NAME);
@@ -65,10 +66,7 @@ class Generator
      * Reset number, for instance to change to another sequence, etc.
      * NOT TRANSACTIONAL SAFE. MUST BE USED ONLY IN SPECIFIC CASES.
      *
-     * @param $register
-     * @param $value
      *
-     * @return int
      */
     public function setCurrent($register, $value): int
     {

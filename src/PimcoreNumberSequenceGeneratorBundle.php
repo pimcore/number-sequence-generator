@@ -18,7 +18,7 @@ namespace Pimcore\Bundle\NumberSequenceGeneratorBundle;
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
 use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
 
-class NumberSequenceGeneratorBundle extends AbstractPimcoreBundle
+class PimcoreNumberSequenceGeneratorBundle extends AbstractPimcoreBundle
 {
     use PackageVersionTrait;
 

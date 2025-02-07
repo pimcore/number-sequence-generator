@@ -17,7 +17,6 @@ namespace Pimcore\Bundle\NumberSequenceGeneratorBundle\Migrations;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
-use Pimcore\Bundle\NumberSequenceGeneratorBundle\RandomGenerator;
 use Pimcore\Model\Tool\SettingsStore;
 
 /**

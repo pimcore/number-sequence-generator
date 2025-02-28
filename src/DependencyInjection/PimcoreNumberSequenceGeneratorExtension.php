@@ -26,7 +26,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
  *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
-class NumberSequenceGeneratorExtension extends Extension implements PrependExtensionInterface
+class PimcoreNumberSequenceGeneratorExtension extends Extension implements PrependExtensionInterface
 {
     public function load(array $configs, ContainerBuilder $container): void
     {

@@ -15,7 +15,7 @@
 
 namespace Pimcore\Bundle\NumberSequenceGeneratorBundle;
 
-use Pimcore\Bundle\NumberSequenceGeneratorBundle\DependencyInjection\NumberSequenceGeneratorExtension;
+use Pimcore\Bundle\NumberSequenceGeneratorBundle\DependencyInjection\PimcoreNumberSequenceGeneratorExtension;
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
 use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
@@ -31,7 +31,7 @@ class PimcoreNumberSequenceGeneratorBundle extends AbstractPimcoreBundle
 
     public function getContainerExtension(): ExtensionInterface
     {
-        return new NumberSequenceGeneratorExtension();
+        return new PimcoreNumberSequenceGeneratorExtension();
     }
 
     public function getInstaller(): Installer

@@ -25,5 +25,5 @@ return [
 3) Install the bundle:
 
 ```bash
-bin/console pimcore:bundle:install NumberSequenceGeneratorBundle
+bin/console pimcore:bundle:install PimcoreNumberSequenceGeneratorBundle
 ```

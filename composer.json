@@ -23,7 +23,7 @@
     "extra": {
         "pimcore": {
             "bundles": [
-                "Pimcore\\Bundle\\NumberSequenceGeneratorBundle\\NumberSequenceGeneratorBundle"
+                "Pimcore\\Bundle\\NumberSequenceGeneratorBundle\\PimcoreNumberSequenceGeneratorBundle"
             ]
         }
     }

@@ -25,5 +25,5 @@ services:
     Pimcore\Bundle\NumberSequenceGeneratorBundle\Installer:
         public: true
         arguments:
-            $bundle: "@=service('kernel').getBundle('NumberSequenceGeneratorBundle')"
+            $bundle: "@=service('kernel').getBundle('PimcoreNumberSequenceGeneratorBundle')"
 

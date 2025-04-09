@@ -38,7 +38,7 @@ class NumberSequenceGeneratorExtension extends Extension implements PrependExten
         $loader->load('services.yml');
     }
 
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container): void
     {
         if ($container->hasExtension('doctrine_migrations')) {
             $loader = new YamlFileLoader(

@@ -1,6 +1,6 @@
 {
     "name": "pimcore/number-sequence-generator",
-    "license": "GPL-3.0+",
+    "license": "Pimcore Open Core License (POCL)",
     "type": "pimcore-bundle",
     "description": "Pimcore Number Sequence Generator",
     "config": {
